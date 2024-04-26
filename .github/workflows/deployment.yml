@@ -18,11 +18,9 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate CodeArtifact authentication token
-        id: codeartifact
-        run: |
-          echo "::set-output name=auth_token::$(aws codeartifact get-authorization-token --domain verdant --domain-owner 525060412716 --region us-east-1 --query authorizationToken --output text)"
 
+      - uses: actions/checkout@v3
+      
       - name: Build docker image from Dockerfile
         run: docker build -t 525060412716.dkr.ecr.us-east-1.amazonaws.com/${PROJECT_NAME}:${env} .
 
