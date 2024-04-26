@@ -24,7 +24,7 @@ jobs:
           echo "::set-output name=auth_token::$(aws codeartifact get-authorization-token --domain verdant --domain-owner 525060412716 --region us-east-1 --query authorizationToken --output text)"
 
       - name: Build docker image from Dockerfile
-        run: docker build -t 525060412716.dkr.ecr.us-east-1.amazonaws.com/${PROJECT_NAME}:${env}
+        run: docker build -t 525060412716.dkr.ecr.us-east-1.amazonaws.com/${PROJECT_NAME}:${env} .
 
       - name: Configure AWS credentials
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 525060412716.dkr.ecr.us-east-1.amazonaws.com/${PROJECT_NAME}:${env}
