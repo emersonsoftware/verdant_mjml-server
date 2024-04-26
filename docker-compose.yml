@@ -1,0 +1,12 @@
+version: "3"
+services:
+  alerts-service:
+    image: 525060412716.dkr.ecr.us-east-1.amazonaws.com/mjml-server:prod
+    container_name: mjml-server
+    ports:
+      - "15500:15500"
+    restart: on-failure    
+    logging:
+      driver: local
+    volumes:
+      - /var/log/app:/log
